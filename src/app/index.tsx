@@ -1,21 +1,43 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StatusBar } from "expo-status-bar";
+import { FlatList, StyleSheet, Text, View } from "react-native";
+import FoodItem from "../components/FoodItem";
 
 export default function App() {
+  const foods = [
+    {
+      id: 1,
+      name: "Apple",
+      brand: "Orchard apple",
+      cals: 43,
+    },
+    {
+      id: 2,
+      name: "Grapes",
+      brand: "Sweet grape",
+      cals: 34,
+    },
+    {
+      id: 3,
+      name: "Guava",
+      brand: "White guava",
+      cals: 23,
+    },
+  ];
   return (
-    <View style={styles.container}>
-      <Text className="text-red-100">Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View>
+      <FlatList
+        data={foods}
+        renderItem={({ item }) => (
+          <FoodItem
+            brand={item.brand}
+            cals={item.cals}
+            name={item.name}
+            key={item.id}
+          />
+        )}
+        contentContainerStyle={{ gap: 10, padding: 10 }}
+      />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
