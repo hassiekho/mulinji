@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { Button, FlatList, StyleSheet, Text, TextInput, View } from "react-native";
 import FoodItem from "../components/FoodItem";
 
 export default function App() {
+  const [searchTerm, setSearchTerm] = useState("");
   const foods = [
     {
       id: 1,
@@ -24,8 +25,19 @@ export default function App() {
       cals: 23,
     },
   ];
+
+  const perfomSearch =async () => {
+    console.log("first")
+  }
   return (
-    <View>
+    <View style={styles.container}>
+      <TextInput
+        value={searchTerm}
+        onChangeText={setSearchTerm}
+        placeholder="Search..."
+        style={styles.input}
+      />
+      {searchTerm && <Button title="Search" onPress={perfomSearch}/>}
       <FlatList
         data={foods}
         renderItem={({ item }) => (
@@ -36,8 +48,22 @@ export default function App() {
             key={item.id}
           />
         )}
-        contentContainerStyle={{ gap: 10, padding: 10 }}
+        contentContainerStyle={{ gap: 5 }}
       />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    padding: 10,
+    gap: 10,
+  },
+  input: {
+    backgroundColor: "#f2f2f2",
+    padding: 10,
+    borderRadius: 5,
+  },
+});

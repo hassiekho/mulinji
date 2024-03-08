@@ -9,6 +9,7 @@ type Props = {
 };
 
 export default function FoodItem({ name, brand, cals }: Props) {
+ 
   return (
     <View style={styles.container}>
       <View style={{ flex: 1 }}>
@@ -24,7 +25,7 @@ export default function FoodItem({ name, brand, cals }: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "gainsboro",
+    backgroundColor: "#f2f2f2",
     padding: 10,
     borderRadius: 5,
     flexDirection: "row",
